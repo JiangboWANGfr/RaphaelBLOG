@@ -4,7 +4,7 @@ const CONFIG = {
     name: "JiangboWANG",
     image: "/avatar.svg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     role: "Information Theory",
-    bio: "Key themes in my work include the optimization of wireless networks, the development of intelligent and autonomous systems, and the application of deep learning for enhanced data analysis and decision-making.",
+    bio: "Infinite Progress",
     email: "jiangbo.wang@ensea.fr",
     linkedin: "https://www.linkedin.com/in/jiangbo-wang-a98a5b297/",
     github: "JiangboWANGfr",
