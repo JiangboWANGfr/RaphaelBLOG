@@ -44,7 +44,7 @@ const Detail: React.FC<Props> = () => {
         <div className="tags">
           <TagList />
         </div>
-        <FeedHeader />
+{/*         <FeedHeader /> */}
         {currentTag ? (
           <PostList q={q} /> // 显示标签相关的内容
         ) : (
