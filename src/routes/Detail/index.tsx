@@ -1,35 +1,36 @@
+import { useRouter } from "next/router"
+import { useState } from "react"
 import useMermaidEffect from "./hooks/useMermaidEffect"
 import PostDetail from "./PostDetail"
 import PageDetail from "./PageDetail"
 import usePostQuery from "src/hooks/usePostQuery"
-import SearchInput from "src/routes/Feed/SearchInput"
 import { FeedHeader } from "src/routes/Feed/FeedHeader"
 import Footer from "src/routes/Feed/Footer"
 import styled from "@emotion/styled"
 import TagList from "src/routes/Feed/TagList"
 import MobileProfileCard from "src/routes/Feed/MobileProfileCard"
+import PostList from "src/routes/Feed/PostList"
+import PinnedPosts from "src/routes/Feed/PostList/PinnedPosts"
 import ProfileCard from "src/routes/Feed/ProfileCard"
 import ServiceCard from "src/routes/Feed/ServiceCard"
 import ContactCard from "src/routes/Feed/ContactCard"
-import PostList from "src/routes/Feed/PostList"
-import PinnedPosts from "src/routes/Feed/PostList/PinnedPosts"
 const HEADER_HEIGHT = 73
-import { useState } from "react"
-import { useRouter } from "next/router"
 
 type Props = {}
-
 const Detail: React.FC<Props> = () => {
   const data = usePostQuery()
   useMermaidEffect()
-    const [q, setQ] = useState("")
-    const router = useRouter()
-    const currentTag = router.query.tag || undefined
+  const [q, setQ] = useState("")
+  const router = useRouter()
+  const currentTag = router.query.tag || undefined
 
   if (!data) return null
 
   return (
-    <StyledWrapper data-type={data.type}>
+    <StyledWrapper
+      data-type={data.type}
+      className={currentTag ? "show-rt" : ""}
+    >
       <div
         className="lt"
         css={{
@@ -57,13 +58,27 @@ const Detail: React.FC<Props> = () => {
           <Footer />
         </div>
       </div>
+      {currentTag && (
+        <div
+          className="rt"
+          css={{
+            height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+          }}
+        >
+          <ProfileCard />
+          <ServiceCard />
+          <ContactCard />
+          <div className="footer">
+            <Footer />
+          </div>
+        </div>
+      )}
     </StyledWrapper>
   )
 }
 
+
 export default Detail
-
-
 const StyledWrapper = styled.div`
   grid-template-columns: repeat(12, minmax(0, 1fr));
 
@@ -116,6 +131,39 @@ const StyledWrapper = styled.div`
       }
     }
   }
+
+  > .rt {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    display: none;
+    overflow: scroll;
+    position: sticky;
+    top: ${HEADER_HEIGHT - 10}px;
+
+    @media (min-width: 1024px) {
+      display: block;
+      grid-column: span 3 / span 3;
+    }
+
+    .footer {
+      padding-top: 1rem;
+    }
+  }
+
+  &.show-rt {
+    > .rt {
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(15, minmax(0, 1fr));
+      > .mid {
+        grid-column: span 10 / span 10;
+      }
+    }
+  }
 `
-
-
