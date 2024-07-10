@@ -6,7 +6,7 @@ const CONFIG = {
     role: "Information Theory",
     bio: "Infinite Progress",
     email: "jiangbo.wang@ensea.fr",
-    linkedin: "https://www.linkedin.com/in/jiangbo-wang-a98a5b297/",
+    linkedin: "jiangbo-wang-a98a5b297",
     github: "JiangboWANGfr",
     instagram: "",
   },
