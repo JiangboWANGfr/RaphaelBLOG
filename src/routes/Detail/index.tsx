@@ -80,7 +80,7 @@ const Detail: React.FC<Props> = () => {
 
 export default Detail
 const StyledWrapper = styled.div`
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(15, minmax(0, 1fr));
 
   padding: 2rem 0;
   display: grid;
@@ -110,10 +110,10 @@ const StyledWrapper = styled.div`
   }
 
   > .mid {
-    grid-column: span 12 / span 12;
+    grid-column: span 13 / span 13;
 
     @media (min-width: 1024px) {
-      grid-column: span 10 / span 10;
+      grid-column: span 13 / span 13;
     }
 
     > .tags {
